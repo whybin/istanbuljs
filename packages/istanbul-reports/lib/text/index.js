@@ -36,8 +36,7 @@ function fill(str, width, right, tabs) {
             fillStr = padding(remaining - strlen);
             fmtStr = right ? fillStr + str : str + fillStr;
         } else {
-            fmtStr = str.substring(strlen - remaining);
-            fmtStr = '... ' + fmtStr.substring(4);
+            fmtStr = str.substring(0, remaining - 4) + ' ...';
         }
     }
 
