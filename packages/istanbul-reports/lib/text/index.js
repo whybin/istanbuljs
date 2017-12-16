@@ -51,6 +51,10 @@ function formatPct(pct, width) {
     return fill(pct, width || PCT_COLS, true, 0);
 }
 
+function formatMiss(pct, width) {
+    return fill(pct, width || PCT_COLS, false, 0);
+}
+
 function nodeName(node) {
     return node.getRelativeName() || 'All files';
 }
@@ -113,7 +117,7 @@ function tableHeader(maxNameCols) {
 
 function missingLines (node, colorizer) {
     var missingLines = node.isSummary() ? [] : node.getFileCoverage().getUncoveredLines();
-    return colorizer(formatPct(missingLines.join(','), MISSING_COL), 'low');
+    return colorizer(formatMiss(missingLines.join(','), MISSING_COL), 'low');
 }
 
 function missingBranches (node, colorizer) {
@@ -123,7 +127,7 @@ function missingBranches (node, colorizer) {
         }).map(function (key) {
             return key;
         });
-    return colorizer(formatPct(missingLines.join(','), MISSING_COL), 'medium');
+    return colorizer(formatMiss(missingLines.join(','), MISSING_COL), 'medium');
 }
 
 function tableRow(node, context, colorizer, maxNameCols, level) {
